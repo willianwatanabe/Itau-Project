@@ -1,0 +1,52 @@
+﻿@model UserModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/lib/boxicons/css/boxicons.min.css" />
+<link rel="stylesheet" href="~/css/pages/login/style.css" />
+<link rel="stylesheet" href="~/lib/font-awesome/6.2.1/css/all.min.css">
+
+<main>
+    <section class="block-presentation">
+        <img src="assets/img/logo.png" alt="logo" />
+        <div class="block-info">
+            <h1>Cadastro de Clientes</h1>
+        </div>
+    </section>
+    <section class="block-form">
+        <form asp-action="Index" asp-controller="Login">
+            <h4>Entre com sua conta</h4>
+            <span>Preencha seus dados abaixo</span>
+            <div class="my-3">
+                <label class="form-label">Usuário</label>
+                <div class="form-control">
+                    <i class="bx bxs-user fs-5"></i>
+                    <input type="text" asp-for="UserName">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <div class="form-control">
+                    <i class="bx bxs-key fs-5"></i>
+                    <input type="password" id="password" asp-for="Password">
+                    <i class="fa-solid fa-eye" id="eye">
+
+                    </i>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Entrar
+            </button>
+        </form>
+    </section>
+</main>
+
+<script src="~/js/views/login.js"></script>
+
