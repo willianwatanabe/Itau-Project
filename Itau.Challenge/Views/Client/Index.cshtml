@@ -1,0 +1,50 @@
+﻿@model List<ClientModel>
+
+@{
+    ViewData["Title"] = "Início";
+    Layout = "_Layout";
+}
+<link rel="stylesheet" href="~/css/pages/client/index.css" asp-append-version="true" />
+
+
+<div class="container-title">
+    <h5>Recalls em aberto</h5>
+    @Html.ActionLink("+ Cadastrar novo cliente", "Register", "Client", null, new { @class = "btn btn-primary " })
+</div>
+<div class="container-list-recalls">
+    @foreach (var client in Model)
+    {
+        <div class="container-recall">
+            <div class="title-recall">
+                <div class="infos">
+                    <strong>Nome: @client.Name</strong>
+                    @{
+                        switch ((int)client.Gender)
+                        {
+                            case 0:
+                                <span>Sexo: Masculino</span>
+                                break;
+                            case 1:
+                                <span>Sexo: Feminino</span>
+                                break;
+                            default:
+                                <span>Sexo: Indefinido</span>
+                                break;
+                        }
+                    }
+                    <span>Endereço: @client.Address</span>
+                    <span>Celular: @client.PhoneNumber</span>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="status-recall">
+                <p>Agencia Conta</p>
+            </div>
+            <a class="btn btn-secondary left" asp-route-id="@client.Id" asp-controller="Client" asp-action="Edit">Editar</a>
+        </div>
+    }
+</div>
+
+<script type="module" src="~/js/views/recall/index.js"></script>

@@ -1,5 +1,6 @@
 using Itau.Challenge.Enums;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Itau.Challenge.Models
 {
@@ -17,7 +18,7 @@ namespace Itau.Challenge.Models
 
         public string PhoneNumber { get; set; }
 
-        public string Profession { get; set; }
+        public string? Profession { get; set; }
 
         public DateTime Birth { get; set; }
 

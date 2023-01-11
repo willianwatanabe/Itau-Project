@@ -1,12 +1,15 @@
 using Itau.Challenge.Data.Context;
+using Itau.Challenge.Repository;
+using Itau.Challenge.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
+
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 var app = builder.Build();
 

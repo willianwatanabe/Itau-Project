@@ -30,7 +30,7 @@ namespace Itau.Challenge.Controllers
 
             //await AutenticacaoHelper.AutenticarNoCookie(login.Chave, usuarioParaLogin, false, HttpContext);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Client");
         }
 
         [HttpGet]
