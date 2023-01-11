@@ -1,0 +1,65 @@
+﻿@model ClientModel
+
+@{
+    ViewData["Title"] = "Deletar";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/pages/client/cadastrar.css" />
+
+<form asp-controller="Client" asp-action="Edit" method="post">
+
+    <div class="title">
+        <h1>Deseja deletar o registro abaixo?</h1>
+    </div>
+
+
+    @Html.HiddenFor(x => x.Id)
+
+    <div>
+        <label class="form-label required">Nome do cliente</label>
+        <input asp-for="Name" type="text" class="form-control" required>
+    </div>
+
+    <div>
+        <label class="form-label required">CPF</label>
+        <input asp-for="Cpf" type="text" class="form-control" required readonly>
+    </div>
+
+    <div>
+        <label class="form-label required">Nascimento</label>
+        <input asp-for="Birth" type="text" class="form-control" required>
+    </div>
+
+    <div>
+        <label class="form-label">Sexo</label>
+        <input asp-for="Gender" type="text" class="form-control">
+    </div>
+
+    <div>
+        <label class="form-label required">Endereço</label>
+        <input asp-for="Address" type="text" class="form-control" required>
+    </div>
+
+    <div>
+        <label class="form-label required">Celular</label>
+        <input asp-for="PhoneNumber" type="text" class="form-control" required>
+    </div>
+
+    <div>
+        <label class="form-label">Ocupação</label>
+        <input asp-for="Profession" type="text" class="form-control">
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-secondary left" asp-action="Index">Voltar</a>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</form>
+
+<script src="~/js/views/recall/partials/formCadastroRecall.js" type="application/javascript"></script>
+
+<div class="actions">
+    <button class="btn btn-secondary left">Cancelar</button>
+    <button class="btn btn-primary">Apagar</button>
+</div>

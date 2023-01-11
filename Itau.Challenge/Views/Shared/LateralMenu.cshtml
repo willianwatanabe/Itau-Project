@@ -1,0 +1,25 @@
+﻿@*@model UserModel*@
+
+<link rel="stylesheet" href="~/css/pages/lateralMenu/style.css">
+
+<nav class="nav-lateral">
+    <div class="nav-itens">
+        <div class="nav-user">
+            <img src="~/assets/icons/itau-logo.svg" style="width:30%;" />
+            <div class="name-user">
+                <h3>Bem-Vindo</h3>
+                <p>Willian Watanabe</p>
+            </div>
+        </div>
+
+        <a class="nav-item" asp-action="Index" asp-controller="Home">
+            <i class="bx bxs-car-mechanic"></i>
+            <span>Início</span>
+        </a>
+
+        <a class="nav-item" asp-action="Index" asp-controller="Login">
+            <i class="bx bx-log-out"></i>
+            <span>Sair</span>
+        </a>
+    </div>
+</nav>
