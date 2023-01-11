@@ -1,5 +1,6 @@
 ﻿using Itau.Challenge.Models;
 using Itau.Challenge.Repository.Interfaces;
+using Itau.Challenge.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itau.Challenge.Controllers
@@ -7,10 +8,12 @@ namespace Itau.Challenge.Controllers
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepositoy;
+        private readonly IValidationService _validationService;
 
-        public ClientController(IClientRepository client)
+        public ClientController(IClientRepository client, IValidationService validation)
         {
             _clientRepositoy = client;
+            _validationService = validation;
         }
 
 
@@ -28,6 +31,12 @@ namespace Itau.Challenge.Controllers
         [HttpPost]
         public IActionResult Register(ClientModel client)
         {
+            //if (_validationService.clientValidation(client))
+            //{
+            //    _clientRepositoy.Create(client);
+            //    return RedirectToAction("Index");
+            //}
+
             _clientRepositoy.Create(client);
             return RedirectToAction("Index");
         }

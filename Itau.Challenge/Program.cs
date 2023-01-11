@@ -1,6 +1,8 @@
 using Itau.Challenge.Data.Context;
 using Itau.Challenge.Repository;
 using Itau.Challenge.Repository.Interfaces;
+using Itau.Challenge.Services;
+using Itau.Challenge.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 
-builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>()
+                .AddScoped<IValidationService, ValidationService>();
 
 var app = builder.Build();
 
@@ -31,6 +34,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}");
+   // pattern: "{controller=Login}/{action=Index}");
+    pattern: "{controller=Client}/{action=Register}");
 
 app.Run();
