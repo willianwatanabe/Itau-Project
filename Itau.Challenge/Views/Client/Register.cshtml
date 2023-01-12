@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="~/css/pages/client/cadastrar.css" />
 
 <form asp-controller="Client" asp-action="Register" method="post">
+    <div></div>
     <div class="title">
         <h1>Novo Cliente</h1>
         <medium>Preencha os dados abaixo</medium>
@@ -20,7 +21,7 @@
 
     <div>
         <label class="form-label required">CPF</label>
-        <input oninput="mascara(this)" asp-for="Cpf" type="text" maxlength="11" class="form-control" required>
+        <input id="cpfcampo" oninput="mascara(this);" asp-for="Cpf" type="text" maxlength="11" class="form-control" required>
     </div>
 
     <div>
@@ -29,7 +30,7 @@
     </div>
 
     <div>
-        <label class="form-label">Sexo</label>
+        <label class="form-label required">Sexo</label>
         <select asp-for="Gender" class="form-control">
             <option value=0>Masculino</option>
             <option value=1>Feminino</option>
@@ -39,26 +40,24 @@
 
     <div>
         <label class="form-label required">Endereço</label>
-        <input asp-for="Address" type="text" class="form-control" required>
+        <input asp-for="Address" type="text" class="form-control" min="4" required>
     </div>
 
     <div>
         <label class="form-label required">Celular</label>
-        <input asp-for="PhoneNumber" type="text" class="form-control" required>
+        <input asp-for="PhoneNumber" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" type="text" class="form-control" required>
     </div>
 
     <div>
         <label class="form-label">Ocupação</label>
-        <input asp-for="Profession" type="text" class="form-control" required>
+        <input asp-for="Profession" type="text" class="form-control">
     </div>
 
 
     <div class="actions">
         <a class="btn btn-secondary left" asp-action="Index">Voltar</a>
-        <button type="submit" class="btn btn-primary">Continuar</button>
+        <button id="salvar" type="submit" class="btn btn-primary">Continuar</button>
     </div>
 </form>
 
 <script src="~/js/views/register.js" type="application/javascript"></script>
-
-

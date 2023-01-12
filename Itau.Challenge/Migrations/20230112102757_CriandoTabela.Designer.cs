@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Itau.Challenge.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230110213742_CreateClientTable")]
-    partial class CreateClientTable
+    [Migration("20230112102757_CriandoTabela")]
+    partial class CriandoTabela
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,6 @@ namespace Itau.Challenge.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Profession")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
