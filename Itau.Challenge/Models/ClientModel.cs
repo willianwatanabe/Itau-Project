@@ -14,7 +14,7 @@ namespace Itau.Challenge.Models
         [Required(ErrorMessage = "Preencha o campo CPF", AllowEmptyStrings = false)]
         public string Cpf { get; set; }
 
-        public EGender? Gender { get; set; }
+        public EGender Gender { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo endereço", AllowEmptyStrings = false)]
         public string Address { get; set; }

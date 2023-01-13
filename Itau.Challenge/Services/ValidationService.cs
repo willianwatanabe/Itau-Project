@@ -5,22 +5,7 @@ namespace Itau.Challenge.Services
 {
     public class ValidationService : IValidationService
     {
-        public bool clientValidation(ClientModel client)
-        {
-            var cpf = isCpf(client.Cpf) ? true : false;
-
-
-            return cpf;
-
-        }
-
-        //public bool nullOrEmp(ClientModel client)
-        //{
-
-        //}
-
-
-        public bool isCpf(string cpf)
+        public Tuple<bool, string> IsCpf(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -32,14 +17,16 @@ namespace Itau.Challenge.Services
             cpf = cpf.Replace(".", "").Replace("-", "");
 
             if (cpf.Length != 11)
-                return false;
+                return Tuple.Create(false, "CPF inválido");
 
             tempCpf = cpf.Substring(0, 9);
             soma = 0;
 
             for (int i = 0; i < 9; i++)
                 soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+
             resto = soma % 11;
+
             if (resto < 2)
                 resto = 0;
             else
@@ -56,7 +43,9 @@ namespace Itau.Challenge.Services
                 resto = 11 - resto;
             digito = digito + resto.ToString();
 
-            return cpf.EndsWith(digito);
+            cpf = Convert.ToUInt64(cpf).ToString(@"000\.000\.000\-00");
+
+            return Tuple.Create(cpf.EndsWith(digito), cpf);
         }
     }
 }

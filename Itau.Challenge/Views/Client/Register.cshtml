@@ -22,11 +22,12 @@
     <div>
         <label class="form-label required">CPF</label>
         <input id="cpfcampo" oninput="mascara(this);" asp-for="Cpf" type="text" maxlength="11" class="form-control" required>
+        <label class="error-label" id="msgerro" style="display: none;">Preencha um CPF válido</label>
     </div>
 
     <div>
         <label class="form-label required">Nascimento</label>
-        <input asp-for="Birth" type="date" class="form-control" required>
+        <input asp-for="Birth" type="date" id="nascimento" class="form-control" required>
     </div>
 
     <div>
@@ -40,7 +41,7 @@
 
     <div>
         <label class="form-label required">Endereço</label>
-        <input asp-for="Address" type="text" class="form-control" min="4" required>
+        <input asp-for="Address" type="text" class="form-control" required>
     </div>
 
     <div>
@@ -52,7 +53,6 @@
         <label class="form-label">Ocupação</label>
         <input asp-for="Profession" type="text" class="form-control">
     </div>
-
 
     <div class="actions">
         <a class="btn btn-secondary left" asp-action="Index">Voltar</a>

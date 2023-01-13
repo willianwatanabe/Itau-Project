@@ -4,7 +4,6 @@ namespace Itau.Challenge.Services.Interfaces
 {
     public interface IValidationService
     {
-        bool isCpf(string cpf);
-        bool clientValidation(ClientModel client);
+        Tuple<bool, string> IsCpf(string cpf);
     }
 }

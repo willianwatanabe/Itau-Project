@@ -2,6 +2,7 @@
 using Itau.Challenge.Repository.Interfaces;
 using Itau.Challenge.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace Itau.Challenge.Controllers
 {
@@ -15,7 +16,6 @@ namespace Itau.Challenge.Controllers
             _clientRepositoy = client;
             _validationService = validation;
         }
-
 
         public IActionResult Index()
         {
@@ -31,14 +31,16 @@ namespace Itau.Challenge.Controllers
         [HttpPost]
         public IActionResult Register(ClientModel client)
         {
-            //if (_validationService.clientValidation(client))
-            //{
-            //    _clientRepositoy.Create(client);
-            //    return RedirectToAction("Index");
-            //}
+            var cpf = _validationService.IsCpf(client.Cpf);
+            if (cpf.Item1)
+            {
+                client.Cpf = cpf.Item2;
+                _clientRepositoy.Create(client);
 
-            _clientRepositoy.Create(client);
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Register");
         }
 
         public IActionResult Edit(int id)

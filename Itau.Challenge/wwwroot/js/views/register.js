@@ -37,8 +37,12 @@ value_cpf.addEventListener("blur", function (e) {
         validar_cpf == "88888888888" ||
         validar_cpf == "99999999999"
     ) {
-        document.getElementById("cpfcampo").focus();
         e.preventDefault();
+        document.getElementById("cpfcampo").focus();
+        document.getElementById("msgerro").style.display = '';
+    }
+    else {
+        document.getElementById("msgerro").style.display = 'none';
     }
 
     //verificação da quantidade números
@@ -56,7 +60,7 @@ value_cpf.addEventListener("blur", function (e) {
         if (Resto != parseInt(validar_cpf.substring(9, 10))) {
             document.getElementById("cpfcampo").focus();
             e.preventDefault();
-
+            document.getElementById("msgerro").style.display = '';
         }
 
         Soma = 0;
@@ -67,7 +71,7 @@ value_cpf.addEventListener("blur", function (e) {
         if (Resto != parseInt(validar_cpf.substring(10, 11))) {
             document.getElementById("cpfcampo").focus();
             e.preventDefault();
-
+            document.getElementById("msgerro").style.display = '';
         }
 
         //formatação final
@@ -79,6 +83,7 @@ value_cpf.addEventListener("blur", function (e) {
     } else {
         e.preventDefault();
         document.getElementById("cpfcampo").focus();
+        document.getElementById("msgerro").style.display = '';
     }
 })
 
@@ -105,3 +110,14 @@ function mphone(v) {
     }
     return r;
 }
+
+
+//--Defini o valor max do campo nascimento, para previnir entrar com datas futuras.--//
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("nascimento").max = today;
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||//

@@ -21,7 +21,6 @@
     background-image: src(../../../assets/icons/editar.png);
     width: 25px;
 }
-}
 
 .btn-primary {
     background: #2D6CFF;
@@ -44,7 +43,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 7px;
     margin-block: 16px;
 }
 
@@ -104,3 +103,23 @@ body {
         gap: 0;
     }
 
+.container-empty {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 10%;
+}
+
+    .container-empty h1 {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+.title-empty {
+    display: grid;
+    gap: 20px;
+}
+
+.img-empty {
+    height: 115px;
+}

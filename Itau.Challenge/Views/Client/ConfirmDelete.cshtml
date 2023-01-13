@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="~/css/pages/client/cadastrar.css" />
 
-<form asp-controller="Client" asp-action="Edit" method="post">
+<form>
 
     <div class="title">
         <h1>Deseja deletar o registro abaixo?</h1>
@@ -17,22 +17,22 @@
 
     <div>
         <label class="form-label required">Nome do cliente</label>
-        <input asp-for="Name" type="text" class="form-control" required readonly>
+        <input asp-for="Name" type="text" class="form-control" readonly required>
     </div>
 
     <div>
         <label class="form-label required">CPF</label>
-        <input asp-for="Cpf" type="text" class="form-control" required readonly>
+        <input id="cpfcampo" oninput="mascara(this);" asp-for="Cpf" type="text" maxlength="11" class="form-control" required readonly>
     </div>
 
     <div>
         <label class="form-label required">Nascimento</label>
-        <input asp-for="Birth" type="text" class="form-control" required readonly>
+        <input asp-for="Birth" type="date" id="nascimento" class="form-control" required readonly>
     </div>
 
     <div>
-        <label class="form-label">Sexo</label>
-        <input asp-for="Gender" type="text" class="form-control" readonly>
+        <label class="form-label required">Sexo</label>
+        <input asp-for="Gender" type="text" class="form-control" required readonly>
     </div>
 
     <div>
@@ -42,7 +42,7 @@
 
     <div>
         <label class="form-label required">Celular</label>
-        <input asp-for="PhoneNumber" type="text" class="form-control" required readonly>
+        <input asp-for="PhoneNumber" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" type="text" class="form-control" required readonly>
     </div>
 
     <div>
@@ -50,9 +50,8 @@
         <input asp-for="Profession" type="text" class="form-control" readonly>
     </div>
 
-
     <div class="actions">
-        <button class="btn btn-secondary left">Cancelar</button>
+        <button class="btn btn-secondary left" asp-controller="Client" asp-action="Index">Cancelar</button>
         <button class="btn btn-primary" asp-route-id="@Model.Id" asp-controller="Client" asp-action="Delete">Apagar</button>
     </div>
 
