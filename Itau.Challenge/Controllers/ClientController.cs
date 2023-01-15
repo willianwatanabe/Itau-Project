@@ -67,5 +67,11 @@ namespace Itau.Challenge.Controllers
             var client = _clientRepositoy.GetById(id);
             return View(client);
         }
+
+        public IActionResult Details(int id)
+        {
+            var client = _clientRepositoy.GetById(id);
+            return View(client);
+        }
     }
 }

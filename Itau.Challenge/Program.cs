@@ -12,7 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>()
-                .AddScoped<IValidationService, ValidationService>();
+                .AddScoped<IValidationService, ValidationService>()
+                .AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

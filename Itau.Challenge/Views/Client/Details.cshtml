@@ -1,0 +1,60 @@
+﻿@model ClientModel
+
+@{
+    ViewData["Title"] = "Visualizar";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/pages/client/cadastrar.css" />
+
+<form>
+
+    <div class="title">
+        <h1>Detalhes do cliente</h1>
+    </div>
+
+    @Html.HiddenFor(x => x.Id)
+
+    <div>
+        <label class="form-label required">Nome do cliente</label>
+        <input asp-for="Name" type="text" class="form-control" readonly required>
+    </div>
+
+    <div>
+        <label class="form-label required">CPF</label>
+        <input id="cpfcampo" oninput="mascara(this);" asp-for="Cpf" type="text" maxlength="11" class="form-control" required readonly>
+    </div>
+
+    <div>
+        <label class="form-label required">Nascimento</label>
+        <input asp-for="Birth" type="date" id="nascimento" class="form-control" required readonly>
+    </div>
+
+    <div>
+        <label class="form-label required">Sexo</label>
+        <input asp-for="Gender" type="text" class="form-control" required readonly>
+    </div>
+
+    <div>
+        <label class="form-label required">Endereço</label>
+        <input asp-for="Address" type="text" class="form-control" required readonly>
+    </div>
+
+    <div>
+        <label class="form-label required">Celular</label>
+        <input asp-for="PhoneNumber" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" type="text" class="form-control" required readonly>
+    </div>
+
+    <div>
+        <label class="form-label">Ocupação</label>
+        <input asp-for="Profession" type="text" class="form-control" readonly>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-secondary left" asp-controller="Client" asp-action="Index">Voltar</button>
+    </div>
+
+</form>
+
+<script src="~/js/views/recall/partials/formCadastroRecall.js" type="application/javascript"></script>
+

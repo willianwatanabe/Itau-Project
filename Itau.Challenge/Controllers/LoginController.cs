@@ -1,4 +1,5 @@
 ﻿using Itau.Challenge.Models;
+using Itau.Challenge.Repository.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,13 @@ namespace Itau.Challenge.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IUserRepository _userRepository;
+
+        public LoginController(IUserRepository user)
+        {
+            _userRepository = user;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -13,31 +21,20 @@ namespace Itau.Challenge.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(UserModel login)
+        public IActionResult Login(UserModel usuario)
         {
-            //if (login.IsValid(login))
-            //{
-            //    //_notyf.Error("Preencha todos os campos corretamente!");
-            //    return View(login);
-            //}
+            var user = _userRepository.GetUser(usuario.Login);
 
-            //var usuarioParaLogin = await _autorizacaoService.VerificarSeUsuarioEstaAutorizado(login.Chave, login.Senha);
-            //if (!usuarioParaLogin.Valido)
-            //{
-            //    _notyf.Error(usuarioParaLogin.Mensagem);
-            //    return View(login);
-            //}
+            if (user != null)
+            {
+                if (user.isValid(usuario.Password))
+                    return RedirectToAction("Index", "Client");
 
-            //await AutenticacaoHelper.AutenticarNoCookie(login.Chave, usuarioParaLogin, false, HttpContext);
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index", "Client");
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync();
             return RedirectToAction("Index");
         }
+
     }
 }

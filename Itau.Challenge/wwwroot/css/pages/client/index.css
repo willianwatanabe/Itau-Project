@@ -117,7 +117,8 @@ body {
 
 .title-empty {
     display: grid;
-    gap: 20px;
+    gap: 70px;
+    padding: 40px 0px 0px 0px;
 }
 
 .img-empty {
