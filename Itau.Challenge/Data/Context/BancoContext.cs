@@ -11,5 +11,7 @@ namespace Itau.Challenge.Data.Context
         }
 
         public DbSet<ClientModel> Client { get; set; }
+
+        public DbSet<UserModel> Usuarios { get; set; }
     }
 }

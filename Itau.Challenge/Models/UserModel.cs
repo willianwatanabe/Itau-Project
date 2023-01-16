@@ -1,16 +1,22 @@
-using System;
+using Itau.Challenge.Enums;
 
 namespace Itau.Challenge.Models
 {
     public class UserModel
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Profile { get; set; }
+        public int Id { get; set; }
 
-        public bool IsValid(UserModel login)
+        public string UserName { get; set; }
+
+        public string Login { get; set; }
+
+        public string Password { get; set; }
+
+        public EProfile Perfil { get; set; }
+
+        public bool isValid (string password)
         {
-            return !string.IsNullOrEmpty(login.UserName) || !string.IsNullOrEmpty(login.Password);
+            return Password == password;
         }
     }
 }

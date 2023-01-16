@@ -1,7 +1,7 @@
 ﻿@model ClientModel
 
 @{
-    ViewData["Title"] = "Deletar";
+    ViewData["Title"] = "Visualizar";
     Layout = "_Layout";
 }
 
@@ -10,7 +10,7 @@
 <form>
 
     <div class="title">
-        <h1>Deseja deletar o registro abaixo?</h1>
+        <h1>Detalhes do cliente</h1>
     </div>
 
     @Html.HiddenFor(x => x.Id)
@@ -51,8 +51,7 @@
     </div>
 
     <div class="actions">
-        <button class="btn btn-secondary left" asp-controller="Client" asp-action="Index">Cancelar</button>
-        <button class="btn btn-primary" asp-route-id="@Model.Id" asp-controller="Client" asp-action="Delete">Apagar</button>
+        <button class="btn btn-secondary left" asp-controller="Client" asp-action="Index">Voltar</button>
     </div>
 
 </form>

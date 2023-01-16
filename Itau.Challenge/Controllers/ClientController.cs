@@ -1,18 +1,21 @@
 ﻿using Itau.Challenge.Models;
 using Itau.Challenge.Repository.Interfaces;
+using Itau.Challenge.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace Itau.Challenge.Controllers
 {
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepositoy;
+        private readonly IValidationService _validationService;
 
-        public ClientController(IClientRepository client)
+        public ClientController(IClientRepository client, IValidationService validation)
         {
             _clientRepositoy = client;
+            _validationService = validation;
         }
-
 
         public IActionResult Index()
         {
@@ -28,8 +31,16 @@ namespace Itau.Challenge.Controllers
         [HttpPost]
         public IActionResult Register(ClientModel client)
         {
-            _clientRepositoy.Create(client);
-            return RedirectToAction("Index");
+            var cpf = _validationService.IsCpf(client.Cpf);
+            if (cpf.Item1)
+            {
+                client.Cpf = cpf.Item2;
+                _clientRepositoy.Create(client);
+
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Register");
         }
 
         public IActionResult Edit(int id)
@@ -52,6 +63,12 @@ namespace Itau.Challenge.Controllers
         }
 
         public IActionResult ConfirmDelete(int id)
+        {
+            var client = _clientRepositoy.GetById(id);
+            return View(client);
+        }
+
+        public IActionResult Details(int id)
         {
             var client = _clientRepositoy.GetById(id);
             return View(client);

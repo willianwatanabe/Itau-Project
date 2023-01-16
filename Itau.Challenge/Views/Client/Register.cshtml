@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="~/css/pages/client/cadastrar.css" />
 
 <form asp-controller="Client" asp-action="Register" method="post">
+    <div></div>
     <div class="title">
         <h1>Novo Cliente</h1>
         <medium>Preencha os dados abaixo</medium>
@@ -20,17 +21,22 @@
 
     <div>
         <label class="form-label required">CPF</label>
-        <input asp-for="Cpf" type="text" class="form-control" required>
+        <input id="cpfcampo" oninput="mascara(this);" asp-for="Cpf" type="text" maxlength="11" class="form-control" required>
+        <label class="error-label" id="msgerro" style="display: none;">Preencha um CPF válido</label>
     </div>
 
     <div>
         <label class="form-label required">Nascimento</label>
-        <input asp-for="Birth" type="text" class="form-control" required>
+        <input asp-for="Birth" type="date" id="nascimento" class="form-control" required>
     </div>
 
     <div>
-        <label class="form-label">Sexo</label>
-        <input asp-for="Gender" type="text" class="form-control">
+        <label class="form-label required">Sexo</label>
+        <select asp-for="Gender" class="form-control">
+            <option value=0>Masculino</option>
+            <option value=1>Feminino</option>
+            <option value=2>Indefinido</option>
+        </select>
     </div>
 
     <div>
@@ -40,7 +46,7 @@
 
     <div>
         <label class="form-label required">Celular</label>
-        <input asp-for="PhoneNumber" type="text" class="form-control" required>
+        <input asp-for="PhoneNumber" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" type="text" class="form-control" required>
     </div>
 
     <div>
@@ -48,11 +54,10 @@
         <input asp-for="Profession" type="text" class="form-control">
     </div>
 
-
     <div class="actions">
         <a class="btn btn-secondary left" asp-action="Index">Voltar</a>
-        <button type="submit" class="btn btn-primary">Continuar</button>
+        <button id="salvar" type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form>
 
-<script src="~/js/views/recall/partials/formCadastroRecall.js" type="application/javascript"></script>
+<script src="~/js/views/register.js" type="application/javascript"></script>

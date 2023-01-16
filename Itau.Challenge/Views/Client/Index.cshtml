@@ -6,45 +6,68 @@
 }
 <link rel="stylesheet" href="~/css/pages/client/index.css" asp-append-version="true" />
 
+@if (Model.Any())
+{
+    <div class="container-title">
+        <h5>Clientes</h5>
+        @Html.ActionLink("+ Cadastrar novo cliente", "Register", "Client", null, new { @class = "btn btn-primary " })
+    </div>
 
-<div class="container-title">
-    <h5>Recalls em aberto</h5>
-    @Html.ActionLink("+ Cadastrar novo cliente", "Register", "Client", null, new { @class = "btn btn-primary " })
-</div>
-<div class="container-list-recalls">
-    @foreach (var client in Model)
-    {
-        <div class="container-recall">
-            <div class="title-recall">
-                <div class="infos">
-                    <strong>Nome: @client.Name</strong>
-                    @{
-                        switch ((int)client.Gender)
-                        {
-                            case 0:
-                                <span>Sexo: Masculino</span>
-                                break;
-                            case 1:
-                                <span>Sexo: Feminino</span>
-                                break;
-                            default:
-                                <span>Sexo: Indefinido</span>
-                                break;
-                        }
-                    }
-                    <span>Endereço: @client.Address</span>
-                    <span>Celular: @client.PhoneNumber</span>
+    <div class="container-list">
+        @foreach (var client in Model)
+        {
+            <div class="container">
+                <div class="title">
+                    <div class="infos">
+                        <strong>Nome: @client.Name</strong>
+                        <div class="infos">
+                            @{
+                                switch ((int)client.Gender)
+                                {
+                                    case 0:
+                                        <span>Sexo: Masculino</span>
+                                        break;
+                                    case 1:
+                                        <span>Sexo: Feminino</span>
+                                        break;
+                                    default:
+                                        <span>Sexo: Indefinido</span>
+                                        break;
+                                }
+                            }
+                            <span>Endereço: @client.Address</span>
+                            <span>Celular: @client.PhoneNumber</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-route-id="@client.Id" asp-controller="Client" asp-action="Details">
+                        <img src="~/assets/icons/visualizar.png" alt="buttonpng" border="0" style="width: 25px;" />
+                    </a>
+
+                    <a asp-route-id="@client.Id" asp-controller="Client" asp-action="Edit">
+                        <img src="~/assets/icons/editar.png" alt="buttonpng" border="0" style="width: 25px;" />
+                    </a>
+
+                    <a asp-route-id="@client.Id" asp-controller="Client" asp-action="ConfirmDelete">
+                        <img src="~/assets/icons/trash.png" alt="buttonpng" border="0" style="width: 25px;" />
+                    </a>
                 </div>
             </div>
-
-            <div class="line"></div>
-
-            <div class="status-recall">
-                <p>Agencia Conta</p>
-            </div>
-            <a class="btn btn-secondary left" asp-route-id="@client.Id" asp-controller="Client" asp-action="Edit">Editar</a>
+        }
+    </div>
+}
+else
+{
+    <div class="container-empty">
+        <div class="img-empty">
+            <img src="~/assets/icons/empty.png" />
         </div>
-    }
-</div>
+        <div class="title-empty">
+            <h1>Nenhum cliente cadastrado</h1>
+            @Html.ActionLink("+ Cadastrar", "Register", "Client", null, new { @class = "btn btn-primary " })
+        </div>
+    </div>
+}
 
-<script type="module" src="~/js/views/recall/index.js"></script>

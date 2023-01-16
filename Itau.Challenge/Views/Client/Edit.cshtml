@@ -22,17 +22,22 @@
 
     <div>
         <label class="form-label required">CPF</label>
-        <input asp-for="Cpf" type="text" class="form-control" required readonly>
+        <input id="cpfcampo" oninput="mascara(this);" asp-for="Cpf" type="text" maxlength="11" class="form-control" readonly required>
+        <label class="error-label" id="msgerro" style="display: none;">Preencha um CPF válido</label>
     </div>
 
     <div>
         <label class="form-label required">Nascimento</label>
-        <input asp-for="Birth" type="text" class="form-control" required>
+        <input asp-for="Birth" type="date" id="nascimento" class="form-control" required>
     </div>
 
     <div>
-        <label class="form-label">Sexo</label>
-        <input asp-for="Gender" type="text" class="form-control">
+        <label class="form-label required">Sexo</label>
+        <select asp-for="Gender" class="form-control">
+            <option value=0>Masculino</option>
+            <option value=1>Feminino</option>
+            <option value=2>Indefinido</option>
+        </select>
     </div>
 
     <div>
@@ -42,7 +47,7 @@
 
     <div>
         <label class="form-label required">Celular</label>
-        <input asp-for="PhoneNumber" type="text" class="form-control" required>
+        <input asp-for="PhoneNumber" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" type="text" class="form-control" required>
     </div>
 
     <div>
@@ -51,9 +56,9 @@
     </div>
 
     <div class="actions">
-        <a class="btn btn-secondary left" asp-action="Index">Voltar</a>
+        <a class="btn btn-secondary left" asp-action="Index">Cancelar</a>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </div>
 </form>
 
-<script src="~/js/views/recall/partials/formCadastroRecall.js" type="application/javascript"></script>
+<script src="~/js/views/register.js" type="application/javascript"></script>

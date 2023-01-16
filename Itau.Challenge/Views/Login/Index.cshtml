@@ -20,25 +20,29 @@
             <h1>Cadastro de Clientes</h1>
         </div>
     </section>
+
+
     <section class="block-form">
-        <form asp-action="Index" asp-controller="Login">
+        <form asp-action="Login" asp-controller="Login" method="post">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <strong style="color: red">@TempData["ErrorMessage"]</strong>
+                <br />
+            }
+
             <h4>Entre com sua conta</h4>
-            <span>Preencha seus dados abaixo</span>
             <div class="my-3">
                 <label class="form-label">Usuário</label>
                 <div class="form-control">
                     <i class="bx bxs-user fs-5"></i>
-                    <input type="text" asp-for="UserName">
+                    <input type="text" asp-for="Login" required>
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Senha</label>
                 <div class="form-control">
                     <i class="bx bxs-key fs-5"></i>
-                    <input type="password" id="password" asp-for="Password">
-                    <i class="fa-solid fa-eye" id="eye">
-
-                    </i>
+                    <input type="password" id="password" asp-for="Password" required>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">
