@@ -25,16 +25,11 @@ namespace Itau.Challenge.Controllers
         {
             var user = _userRepository.GetUser(usuario.Login);
 
-            if (user != null)
-            {
-                if (user.isValid(usuario.Password))
-                    return RedirectToAction("Index", "Client");
+            if (user != null && user.isValid(usuario.Password))
+                return RedirectToAction("Index", "Client");
 
-                return RedirectToAction("Index");
-            }
-
+            TempData["ErrorMessage"] = "Usuário e/ou senha inválidos.";
             return RedirectToAction("Index");
         }
-
     }
 }
